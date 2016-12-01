@@ -1,0 +1,104 @@
+<ns1:deployment xmlns="http://xml.apache.org/axis/wsdd/" xmlns:java="http://xml.apache.org/axis/wsdd/providers/java" xmlns:ns1="http://xml.apache.org/axis/wsdd/">
+ <ns1:globalConfiguration>
+  <ns1:parameter name="sendMultiRefs" value="true"/>
+  <ns1:parameter name="disablePrettyXML" value="true"/>
+  <ns1:parameter name="adminPassword" value="admin"/>
+  <ns1:parameter name="attachments.Directory" value="C:\Aniruddha\mean\.metadata\.plugins\org.eclipse.wst.server.core\tmp0\wtpwebapps\273_Lab3\WEB-INF\attachments"/>
+  <ns1:parameter name="dotNetSoapEncFix" value="true"/>
+  <ns1:parameter name="enableNamespacePrefixOptimization" value="false"/>
+  <ns1:parameter name="sendXMLDeclaration" value="true"/>
+  <ns1:parameter name="attachments.implementation" value="org.apache.axis.attachments.AttachmentsImpl"/>
+  <ns1:parameter name="sendXsiTypes" value="true"/>
+  <ns1:requestFlow>
+   <ns1:handler type="java:org.apache.axis.handlers.JWSHandler">
+    <ns1:parameter name="scope" value="session"/>
+   </ns1:handler>
+   <ns1:handler type="java:org.apache.axis.handlers.JWSHandler">
+    <ns1:parameter name="scope" value="request"/>
+    <ns1:parameter name="extension" value=".jwr"/>
+   </ns1:handler>
+  </ns1:requestFlow>
+ </ns1:globalConfiguration>
+ <ns1:handler name="URLMapper" type="java:org.apache.axis.handlers.http.URLMapper"/>
+ <ns1:handler name="Authenticate" type="java:org.apache.axis.handlers.SimpleAuthenticationHandler"/>
+ <ns1:handler name="LocalResponder" type="java:org.apache.axis.transport.local.LocalResponder"/>
+ <ns1:service name="AdminService" provider="java:MSG">
+  <ns1:parameter name="allowedMethods" value="AdminService"/>
+  <ns1:parameter name="enableRemoteAdmin" value="false"/>
+  <ns1:parameter name="className" value="org.apache.axis.utils.Admin"/>
+  <ns1:namespace>http://xml.apache.org/axis/wsdd/</ns1:namespace>
+ </ns1:service>
+ <ns1:service name="operations" provider="java:RPC" style="wrapped" use="literal">
+  <ns2:operation name="add" qname="ns1:add" returnQName="ns1:addReturn" returnType="xsd:int" soapAction="" xmlns:ns1="http://calculator.cmpe273.org" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:ns2="http://xml.apache.org/axis/wsdd/">
+   <ns2:parameter qname="ns1:firstNumber" type="xsd:int"/>
+   <ns2:parameter qname="ns1:secondNumber" type="xsd:int"/>
+  </ns2:operation>
+  <ns1:operation name="subtract" qname="ns2:subtract" returnQName="ns2:subtractReturn" returnType="xsd:int" soapAction="" xmlns:ns2="http://calculator.cmpe273.org" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+   <ns1:parameter qname="ns2:firstNumber" type="xsd:int"/>
+   <ns1:parameter qname="ns2:secondNumber" type="xsd:int"/>
+  </ns1:operation>
+  <ns1:operation name="mutliply" qname="ns3:mutliply" returnQName="ns3:mutliplyReturn" returnType="xsd:int" soapAction="" xmlns:ns3="http://calculator.cmpe273.org" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+   <ns1:parameter qname="ns3:firstNumber" type="xsd:int"/>
+   <ns1:parameter qname="ns3:secondNumber" type="xsd:int"/>
+  </ns1:operation>
+  <ns1:operation name="division" qname="ns4:division" returnQName="ns4:divisionReturn" returnType="xsd:int" soapAction="" xmlns:ns4="http://calculator.cmpe273.org" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+   <ns1:parameter qname="ns4:firstNumber" type="xsd:int"/>
+   <ns1:parameter qname="ns4:secondNumber" type="xsd:int"/>
+  </ns1:operation>
+  <ns1:parameter name="allowedMethods" value="add division subtract mutliply"/>
+  <ns1:parameter name="wsdlPortType" value="operations"/>
+  <ns1:parameter name="typeMappingVersion" value="1.2"/>
+  <ns1:parameter name="schemaQualified" value="http://calculator.cmpe273.org"/>
+  <ns1:parameter name="wsdlServicePort" value="operations"/>
+  <ns1:parameter name="className" value="org.cmpe273.calculator.operations"/>
+  <ns1:parameter name="wsdlTargetNamespace" value="http://calculator.cmpe273.org"/>
+  <ns1:parameter name="wsdlServiceElement" value="operationsService"/>
+ </ns1:service>
+ <ns1:service name="Version" provider="java:RPC">
+  <ns1:parameter name="allowedMethods" value="getVersion"/>
+  <ns1:parameter name="className" value="org.apache.axis.Version"/>
+ </ns1:service>
+ <ns1:service name="calculatorImpl" provider="java:RPC" style="wrapped" use="literal">
+  <ns1:operation name="add" qname="ns5:add" returnQName="ns5:addReturn" returnType="xsd:int" soapAction="" xmlns:ns5="http://BS.calculator.cmpe273.org" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+   <ns1:parameter qname="ns5:oldValue" type="xsd:int"/>
+   <ns1:parameter qname="ns5:newValue" type="xsd:int"/>
+  </ns1:operation>
+  <ns1:operation name="subtract" qname="ns6:subtract" returnQName="ns6:subtractReturn" returnType="xsd:int" soapAction="" xmlns:ns6="http://BS.calculator.cmpe273.org" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+   <ns1:parameter qname="ns6:oldValue" type="xsd:int"/>
+   <ns1:parameter qname="ns6:newValue" type="xsd:int"/>
+  </ns1:operation>
+  <ns1:operation name="division" qname="ns7:division" returnQName="ns7:divisionReturn" returnType="xsd:int" soapAction="" xmlns:ns7="http://BS.calculator.cmpe273.org" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+   <ns1:parameter qname="ns7:oldValue" type="xsd:int"/>
+   <ns1:parameter qname="ns7:newValue" type="xsd:int"/>
+  </ns1:operation>
+  <ns1:operation name="mutliply" qname="ns8:mutliply" returnQName="ns8:mutliplyReturn" returnType="xsd:int" soapAction="" xmlns:ns8="http://BS.calculator.cmpe273.org" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+   <ns1:parameter qname="ns8:oldValue" type="xsd:int"/>
+   <ns1:parameter qname="ns8:newValue" type="xsd:int"/>
+  </ns1:operation>
+  <ns1:parameter name="allowedMethods" value="add division subtract mutliply"/>
+  <ns1:parameter name="typeMappingVersion" value="1.2"/>
+  <ns1:parameter name="wsdlPortType" value="calculatorImpl"/>
+  <ns1:parameter name="className" value="org.cmpe273.calculator.BS.calculatorImpl"/>
+  <ns1:parameter name="wsdlServicePort" value="calculatorImpl"/>
+  <ns1:parameter name="schemaQualified" value="http://BS.calculator.cmpe273.org"/>
+  <ns1:parameter name="wsdlTargetNamespace" value="http://BS.calculator.cmpe273.org"/>
+  <ns1:parameter name="wsdlServiceElement" value="calculatorImplService"/>
+ </ns1:service>
+ <ns1:transport name="http">
+  <ns1:requestFlow>
+   <ns1:handler type="URLMapper"/>
+   <ns1:handler type="java:org.apache.axis.handlers.http.HTTPAuthHandler"/>
+  </ns1:requestFlow>
+  <ns1:parameter name="qs:list" value="org.apache.axis.transport.http.QSListHandler"/>
+  <ns1:parameter name="qs:wsdl" value="org.apache.axis.transport.http.QSWSDLHandler"/>
+  <ns1:parameter name="qs.list" value="org.apache.axis.transport.http.QSListHandler"/>
+  <ns1:parameter name="qs.method" value="org.apache.axis.transport.http.QSMethodHandler"/>
+  <ns1:parameter name="qs:method" value="org.apache.axis.transport.http.QSMethodHandler"/>
+  <ns1:parameter name="qs.wsdl" value="org.apache.axis.transport.http.QSWSDLHandler"/>
+ </ns1:transport>
+ <ns1:transport name="local">
+  <ns1:responseFlow>
+   <ns1:handler type="LocalResponder"/>
+  </ns1:responseFlow>
+ </ns1:transport>
+</ns1:deployment>

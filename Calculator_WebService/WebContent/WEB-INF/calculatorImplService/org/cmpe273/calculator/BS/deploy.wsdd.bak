@@ -1,0 +1,42 @@
+<!-- Use this file to deploy some handlers/chains and services      -->
+<!-- Two ways to do this:                                           -->
+<!--   java org.apache.axis.client.AdminClient deploy.wsdd          -->
+<!--      after the axis server is running                          -->
+<!-- or                                                             -->
+<!--   java org.apache.axis.utils.Admin client|server deploy.wsdd   -->
+<!--      from the same directory that the Axis engine runs         -->
+
+<deployment
+    xmlns="http://xml.apache.org/axis/wsdd/"
+    xmlns:java="http://xml.apache.org/axis/wsdd/providers/java">
+
+  <!-- Services from calculatorImplService WSDL service -->
+
+  <service name="calculatorImpl" provider="java:RPC" style="wrapped" use="literal">
+      <parameter name="wsdlTargetNamespace" value="http://BS.calculator.cmpe273.org"/>
+      <parameter name="wsdlServiceElement" value="calculatorImplService"/>
+      <parameter name="schemaQualified" value="http://BS.calculator.cmpe273.org"/>
+      <parameter name="wsdlServicePort" value="calculatorImpl"/>
+      <parameter name="className" value="org.cmpe273.calculator.BS.CalculatorImplSoapBindingImpl"/>
+      <parameter name="wsdlPortType" value="calculatorImpl"/>
+      <parameter name="typeMappingVersion" value="1.2"/>
+      <operation name="add" qname="operNS:add" xmlns:operNS="http://BS.calculator.cmpe273.org" returnQName="retNS:addReturn" xmlns:retNS="http://BS.calculator.cmpe273.org" returnType="rtns:int" xmlns:rtns="http://www.w3.org/2001/XMLSchema" soapAction="" >
+        <parameter qname="pns:oldValue" xmlns:pns="http://BS.calculator.cmpe273.org" type="tns:int" xmlns:tns="http://www.w3.org/2001/XMLSchema"/>
+        <parameter qname="pns:newValue" xmlns:pns="http://BS.calculator.cmpe273.org" type="tns:int" xmlns:tns="http://www.w3.org/2001/XMLSchema"/>
+      </operation>
+      <operation name="subtract" qname="operNS:subtract" xmlns:operNS="http://BS.calculator.cmpe273.org" returnQName="retNS:subtractReturn" xmlns:retNS="http://BS.calculator.cmpe273.org" returnType="rtns:int" xmlns:rtns="http://www.w3.org/2001/XMLSchema" soapAction="" >
+        <parameter qname="pns:oldValue" xmlns:pns="http://BS.calculator.cmpe273.org" type="tns:int" xmlns:tns="http://www.w3.org/2001/XMLSchema"/>
+        <parameter qname="pns:newValue" xmlns:pns="http://BS.calculator.cmpe273.org" type="tns:int" xmlns:tns="http://www.w3.org/2001/XMLSchema"/>
+      </operation>
+      <operation name="division" qname="operNS:division" xmlns:operNS="http://BS.calculator.cmpe273.org" returnQName="retNS:divisionReturn" xmlns:retNS="http://BS.calculator.cmpe273.org" returnType="rtns:int" xmlns:rtns="http://www.w3.org/2001/XMLSchema" soapAction="" >
+        <parameter qname="pns:oldValue" xmlns:pns="http://BS.calculator.cmpe273.org" type="tns:int" xmlns:tns="http://www.w3.org/2001/XMLSchema"/>
+        <parameter qname="pns:newValue" xmlns:pns="http://BS.calculator.cmpe273.org" type="tns:int" xmlns:tns="http://www.w3.org/2001/XMLSchema"/>
+      </operation>
+      <operation name="mutliply" qname="operNS:mutliply" xmlns:operNS="http://BS.calculator.cmpe273.org" returnQName="retNS:mutliplyReturn" xmlns:retNS="http://BS.calculator.cmpe273.org" returnType="rtns:int" xmlns:rtns="http://www.w3.org/2001/XMLSchema" soapAction="" >
+        <parameter qname="pns:oldValue" xmlns:pns="http://BS.calculator.cmpe273.org" type="tns:int" xmlns:tns="http://www.w3.org/2001/XMLSchema"/>
+        <parameter qname="pns:newValue" xmlns:pns="http://BS.calculator.cmpe273.org" type="tns:int" xmlns:tns="http://www.w3.org/2001/XMLSchema"/>
+      </operation>
+      <parameter name="allowedMethods" value="add division subtract mutliply"/>
+
+  </service>
+</deployment>
