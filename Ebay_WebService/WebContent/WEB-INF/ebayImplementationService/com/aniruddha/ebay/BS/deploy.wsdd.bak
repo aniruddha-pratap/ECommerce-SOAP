@@ -1,0 +1,88 @@
+<!-- Use this file to deploy some handlers/chains and services      -->
+<!-- Two ways to do this:                                           -->
+<!--   java org.apache.axis.client.AdminClient deploy.wsdd          -->
+<!--      after the axis server is running                          -->
+<!-- or                                                             -->
+<!--   java org.apache.axis.utils.Admin client|server deploy.wsdd   -->
+<!--      from the same directory that the Axis engine runs         -->
+
+<deployment
+    xmlns="http://xml.apache.org/axis/wsdd/"
+    xmlns:java="http://xml.apache.org/axis/wsdd/providers/java">
+
+  <!-- Services from ebayImplementationService WSDL service -->
+
+  <service name="ebayImplementation" provider="java:RPC" style="wrapped" use="literal">
+      <parameter name="wsdlTargetNamespace" value="http://BS.ebay.aniruddha.com"/>
+      <parameter name="wsdlServiceElement" value="ebayImplementationService"/>
+      <parameter name="schemaQualified" value="http://BS.ebay.aniruddha.com"/>
+      <parameter name="wsdlServicePort" value="ebayImplementation"/>
+      <parameter name="className" value="com.aniruddha.ebay.BS.EbayImplementationSoapBindingImpl"/>
+      <parameter name="wsdlPortType" value="ebayImplementation"/>
+      <parameter name="typeMappingVersion" value="1.2"/>
+      <operation name="getUser" qname="operNS:getUser" xmlns:operNS="http://BS.ebay.aniruddha.com" returnQName="retNS:getUserReturn" xmlns:retNS="http://BS.ebay.aniruddha.com" returnType="rtns:string" xmlns:rtns="http://www.w3.org/2001/XMLSchema" soapAction="" >
+        <parameter qname="pns:email" xmlns:pns="http://BS.ebay.aniruddha.com" type="tns:string" xmlns:tns="http://www.w3.org/2001/XMLSchema"/>
+        <parameter qname="pns:password" xmlns:pns="http://BS.ebay.aniruddha.com" type="tns:string" xmlns:tns="http://www.w3.org/2001/XMLSchema"/>
+      </operation>
+      <operation name="checkout" qname="operNS:checkout" xmlns:operNS="http://BS.ebay.aniruddha.com" returnQName="retNS:checkoutReturn" xmlns:retNS="http://BS.ebay.aniruddha.com" returnType="rtns:boolean" xmlns:rtns="http://www.w3.org/2001/XMLSchema" soapAction="" >
+        <parameter qname="pns:email" xmlns:pns="http://BS.ebay.aniruddha.com" type="tns:string" xmlns:tns="http://www.w3.org/2001/XMLSchema"/>
+      </operation>
+      <operation name="getProduct" qname="operNS:getProduct" xmlns:operNS="http://BS.ebay.aniruddha.com" returnQName="retNS:getProductReturn" xmlns:retNS="http://BS.ebay.aniruddha.com" returnType="rtns:string" xmlns:rtns="http://www.w3.org/2001/XMLSchema" soapAction="" >
+        <parameter qname="pns:email" xmlns:pns="http://BS.ebay.aniruddha.com" type="tns:string" xmlns:tns="http://www.w3.org/2001/XMLSchema"/>
+      </operation>
+      <operation name="getLandingProduct" qname="operNS:getLandingProduct" xmlns:operNS="http://BS.ebay.aniruddha.com" returnQName="retNS:getLandingProductReturn" xmlns:retNS="http://BS.ebay.aniruddha.com" returnType="rtns:string" xmlns:rtns="http://www.w3.org/2001/XMLSchema" soapAction="" >
+      </operation>
+      <operation name="updateUserProfile" qname="operNS:updateUserProfile" xmlns:operNS="http://BS.ebay.aniruddha.com" returnQName="retNS:updateUserProfileReturn" xmlns:retNS="http://BS.ebay.aniruddha.com" returnType="rtns:boolean" xmlns:rtns="http://www.w3.org/2001/XMLSchema" soapAction="" >
+        <parameter qname="pns:firstName" xmlns:pns="http://BS.ebay.aniruddha.com" type="tns:string" xmlns:tns="http://www.w3.org/2001/XMLSchema"/>
+        <parameter qname="pns:lastName" xmlns:pns="http://BS.ebay.aniruddha.com" type="tns:string" xmlns:tns="http://www.w3.org/2001/XMLSchema"/>
+        <parameter qname="pns:phoneNumber" xmlns:pns="http://BS.ebay.aniruddha.com" type="tns:string" xmlns:tns="http://www.w3.org/2001/XMLSchema"/>
+        <parameter qname="pns:dob" xmlns:pns="http://BS.ebay.aniruddha.com" type="tns:string" xmlns:tns="http://www.w3.org/2001/XMLSchema"/>
+        <parameter qname="pns:address" xmlns:pns="http://BS.ebay.aniruddha.com" type="tns:string" xmlns:tns="http://www.w3.org/2001/XMLSchema"/>
+        <parameter qname="pns:email" xmlns:pns="http://BS.ebay.aniruddha.com" type="tns:string" xmlns:tns="http://www.w3.org/2001/XMLSchema"/>
+      </operation>
+      <operation name="getBiddingProduct" qname="operNS:getBiddingProduct" xmlns:operNS="http://BS.ebay.aniruddha.com" returnQName="retNS:getBiddingProductReturn" xmlns:retNS="http://BS.ebay.aniruddha.com" returnType="rtns:string" xmlns:rtns="http://www.w3.org/2001/XMLSchema" soapAction="" >
+        <parameter qname="pns:email" xmlns:pns="http://BS.ebay.aniruddha.com" type="tns:string" xmlns:tns="http://www.w3.org/2001/XMLSchema"/>
+      </operation>
+      <operation name="addToCart" qname="operNS:addToCart" xmlns:operNS="http://BS.ebay.aniruddha.com" returnQName="retNS:addToCartReturn" xmlns:retNS="http://BS.ebay.aniruddha.com" returnType="rtns:boolean" xmlns:rtns="http://www.w3.org/2001/XMLSchema" soapAction="" >
+        <parameter qname="pns:productId" xmlns:pns="http://BS.ebay.aniruddha.com" type="tns:string" xmlns:tns="http://www.w3.org/2001/XMLSchema"/>
+        <parameter qname="pns:email" xmlns:pns="http://BS.ebay.aniruddha.com" type="tns:string" xmlns:tns="http://www.w3.org/2001/XMLSchema"/>
+      </operation>
+      <operation name="getUserPosted" qname="operNS:getUserPosted" xmlns:operNS="http://BS.ebay.aniruddha.com" returnQName="retNS:getUserPostedReturn" xmlns:retNS="http://BS.ebay.aniruddha.com" returnType="rtns:string" xmlns:rtns="http://www.w3.org/2001/XMLSchema" soapAction="" >
+        <parameter qname="pns:email" xmlns:pns="http://BS.ebay.aniruddha.com" type="tns:string" xmlns:tns="http://www.w3.org/2001/XMLSchema"/>
+      </operation>
+      <operation name="getUserOrders" qname="operNS:getUserOrders" xmlns:operNS="http://BS.ebay.aniruddha.com" returnQName="retNS:getUserOrdersReturn" xmlns:retNS="http://BS.ebay.aniruddha.com" returnType="rtns:string" xmlns:rtns="http://www.w3.org/2001/XMLSchema" soapAction="" >
+        <parameter qname="pns:email" xmlns:pns="http://BS.ebay.aniruddha.com" type="tns:string" xmlns:tns="http://www.w3.org/2001/XMLSchema"/>
+      </operation>
+      <operation name="removeFromCart" qname="operNS:removeFromCart" xmlns:operNS="http://BS.ebay.aniruddha.com" returnQName="retNS:removeFromCartReturn" xmlns:retNS="http://BS.ebay.aniruddha.com" returnType="rtns:boolean" xmlns:rtns="http://www.w3.org/2001/XMLSchema" soapAction="" >
+        <parameter qname="pns:productId" xmlns:pns="http://BS.ebay.aniruddha.com" type="tns:string" xmlns:tns="http://www.w3.org/2001/XMLSchema"/>
+        <parameter qname="pns:email" xmlns:pns="http://BS.ebay.aniruddha.com" type="tns:string" xmlns:tns="http://www.w3.org/2001/XMLSchema"/>
+      </operation>
+      <operation name="insertUser" qname="operNS:insertUser" xmlns:operNS="http://BS.ebay.aniruddha.com" returnQName="retNS:insertUserReturn" xmlns:retNS="http://BS.ebay.aniruddha.com" returnType="rtns:boolean" xmlns:rtns="http://www.w3.org/2001/XMLSchema" soapAction="" >
+        <parameter qname="pns:email" xmlns:pns="http://BS.ebay.aniruddha.com" type="tns:string" xmlns:tns="http://www.w3.org/2001/XMLSchema"/>
+        <parameter qname="pns:password" xmlns:pns="http://BS.ebay.aniruddha.com" type="tns:string" xmlns:tns="http://www.w3.org/2001/XMLSchema"/>
+        <parameter qname="pns:firstName" xmlns:pns="http://BS.ebay.aniruddha.com" type="tns:string" xmlns:tns="http://www.w3.org/2001/XMLSchema"/>
+        <parameter qname="pns:lastName" xmlns:pns="http://BS.ebay.aniruddha.com" type="tns:string" xmlns:tns="http://www.w3.org/2001/XMLSchema"/>
+      </operation>
+      <operation name="bidding" qname="operNS:bidding" xmlns:operNS="http://BS.ebay.aniruddha.com" returnQName="retNS:biddingReturn" xmlns:retNS="http://BS.ebay.aniruddha.com" returnType="rtns:boolean" xmlns:rtns="http://www.w3.org/2001/XMLSchema" soapAction="" >
+        <parameter qname="pns:productId" xmlns:pns="http://BS.ebay.aniruddha.com" type="tns:string" xmlns:tns="http://www.w3.org/2001/XMLSchema"/>
+        <parameter qname="pns:email" xmlns:pns="http://BS.ebay.aniruddha.com" type="tns:string" xmlns:tns="http://www.w3.org/2001/XMLSchema"/>
+        <parameter qname="pns:bidAmount" xmlns:pns="http://BS.ebay.aniruddha.com" type="tns:string" xmlns:tns="http://www.w3.org/2001/XMLSchema"/>
+      </operation>
+      <operation name="getUserBids" qname="operNS:getUserBids" xmlns:operNS="http://BS.ebay.aniruddha.com" returnQName="retNS:getUserBidsReturn" xmlns:retNS="http://BS.ebay.aniruddha.com" returnType="rtns:string" xmlns:rtns="http://www.w3.org/2001/XMLSchema" soapAction="" >
+        <parameter qname="pns:email" xmlns:pns="http://BS.ebay.aniruddha.com" type="tns:string" xmlns:tns="http://www.w3.org/2001/XMLSchema"/>
+      </operation>
+      <operation name="getCart" qname="operNS:getCart" xmlns:operNS="http://BS.ebay.aniruddha.com" returnQName="retNS:getCartReturn" xmlns:retNS="http://BS.ebay.aniruddha.com" returnType="rtns:string" xmlns:rtns="http://www.w3.org/2001/XMLSchema" soapAction="" >
+        <parameter qname="pns:email" xmlns:pns="http://BS.ebay.aniruddha.com" type="tns:string" xmlns:tns="http://www.w3.org/2001/XMLSchema"/>
+      </operation>
+      <operation name="postProduct" qname="operNS:postProduct" xmlns:operNS="http://BS.ebay.aniruddha.com" returnQName="retNS:postProductReturn" xmlns:retNS="http://BS.ebay.aniruddha.com" returnType="rtns:boolean" xmlns:rtns="http://www.w3.org/2001/XMLSchema" soapAction="" >
+        <parameter qname="pns:name" xmlns:pns="http://BS.ebay.aniruddha.com" type="tns:string" xmlns:tns="http://www.w3.org/2001/XMLSchema"/>
+        <parameter qname="pns:description" xmlns:pns="http://BS.ebay.aniruddha.com" type="tns:string" xmlns:tns="http://www.w3.org/2001/XMLSchema"/>
+        <parameter qname="pns:price" xmlns:pns="http://BS.ebay.aniruddha.com" type="tns:string" xmlns:tns="http://www.w3.org/2001/XMLSchema"/>
+        <parameter qname="pns:quantity" xmlns:pns="http://BS.ebay.aniruddha.com" type="tns:string" xmlns:tns="http://www.w3.org/2001/XMLSchema"/>
+        <parameter qname="pns:sellerInfo" xmlns:pns="http://BS.ebay.aniruddha.com" type="tns:string" xmlns:tns="http://www.w3.org/2001/XMLSchema"/>
+        <parameter qname="pns:type" xmlns:pns="http://BS.ebay.aniruddha.com" type="tns:string" xmlns:tns="http://www.w3.org/2001/XMLSchema"/>
+      </operation>
+      <parameter name="allowedMethods" value="getProduct getUserPosted bidding getUser getCart removeFromCart getLandingProduct insertUser updateUserProfile getUserOrders getBiddingProduct getUserBids addToCart checkout postProduct"/>
+
+  </service>
+</deployment>

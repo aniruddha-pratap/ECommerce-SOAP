@@ -1,0 +1,123 @@
+<ns1:deployment xmlns="http://xml.apache.org/axis/wsdd/" xmlns:java="http://xml.apache.org/axis/wsdd/providers/java" xmlns:ns1="http://xml.apache.org/axis/wsdd/">
+ <ns1:globalConfiguration>
+  <ns1:parameter name="sendMultiRefs" value="true"/>
+  <ns1:parameter name="disablePrettyXML" value="true"/>
+  <ns1:parameter name="adminPassword" value="admin"/>
+  <ns1:parameter name="attachments.Directory" value="C:\Aniruddha\mean\.metadata\.plugins\org.eclipse.wst.server.core\tmp0\wtpwebapps\Ebay_WebService\WEB-INF\attachments"/>
+  <ns1:parameter name="dotNetSoapEncFix" value="true"/>
+  <ns1:parameter name="enableNamespacePrefixOptimization" value="false"/>
+  <ns1:parameter name="sendXMLDeclaration" value="true"/>
+  <ns1:parameter name="attachments.implementation" value="org.apache.axis.attachments.AttachmentsImpl"/>
+  <ns1:parameter name="sendXsiTypes" value="true"/>
+  <ns1:requestFlow>
+   <ns1:handler type="java:org.apache.axis.handlers.JWSHandler">
+    <ns1:parameter name="scope" value="session"/>
+   </ns1:handler>
+   <ns1:handler type="java:org.apache.axis.handlers.JWSHandler">
+    <ns1:parameter name="scope" value="request"/>
+    <ns1:parameter name="extension" value=".jwr"/>
+   </ns1:handler>
+  </ns1:requestFlow>
+ </ns1:globalConfiguration>
+ <ns1:handler name="URLMapper" type="java:org.apache.axis.handlers.http.URLMapper"/>
+ <ns1:handler name="Authenticate" type="java:org.apache.axis.handlers.SimpleAuthenticationHandler"/>
+ <ns1:handler name="LocalResponder" type="java:org.apache.axis.transport.local.LocalResponder"/>
+ <ns1:service name="AdminService" provider="java:MSG">
+  <ns1:parameter name="allowedMethods" value="AdminService"/>
+  <ns1:parameter name="enableRemoteAdmin" value="false"/>
+  <ns1:parameter name="className" value="org.apache.axis.utils.Admin"/>
+  <ns1:namespace>http://xml.apache.org/axis/wsdd/</ns1:namespace>
+ </ns1:service>
+ <ns1:service name="Version" provider="java:RPC">
+  <ns1:parameter name="allowedMethods" value="getVersion"/>
+  <ns1:parameter name="className" value="org.apache.axis.Version"/>
+ </ns1:service>
+ <ns1:service name="ebayImplementation" provider="java:RPC" style="wrapped" use="literal">
+  <ns2:operation name="getUser" qname="ns1:getUser" returnQName="ns1:getUserReturn" returnType="xsd:string" soapAction="" xmlns:ns1="http://BS.ebay.aniruddha.com" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:ns2="http://xml.apache.org/axis/wsdd/">
+   <ns2:parameter qname="ns1:email" type="xsd:string"/>
+   <ns2:parameter qname="ns1:password" type="xsd:string"/>
+  </ns2:operation>
+  <ns1:operation name="checkout" qname="ns2:checkout" returnQName="ns2:checkoutReturn" returnType="xsd:boolean" soapAction="" xmlns:ns2="http://BS.ebay.aniruddha.com" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+   <ns1:parameter qname="ns2:email" type="xsd:string"/>
+  </ns1:operation>
+  <ns1:operation name="getProduct" qname="ns3:getProduct" returnQName="ns3:getProductReturn" returnType="xsd:string" soapAction="" xmlns:ns3="http://BS.ebay.aniruddha.com" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+   <ns1:parameter qname="ns3:email" type="xsd:string"/>
+  </ns1:operation>
+  <ns1:operation name="getLandingProduct" qname="ns4:getLandingProduct" returnQName="ns4:getLandingProductReturn" returnType="xsd:string" soapAction="" xmlns:ns4="http://BS.ebay.aniruddha.com" xmlns:xsd="http://www.w3.org/2001/XMLSchema"/>
+  <ns1:operation name="updateUserProfile" qname="ns5:updateUserProfile" returnQName="ns5:updateUserProfileReturn" returnType="xsd:boolean" soapAction="" xmlns:ns5="http://BS.ebay.aniruddha.com" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+   <ns1:parameter qname="ns5:firstName" type="xsd:string"/>
+   <ns1:parameter qname="ns5:lastName" type="xsd:string"/>
+   <ns1:parameter qname="ns5:phoneNumber" type="xsd:string"/>
+   <ns1:parameter qname="ns5:dob" type="xsd:string"/>
+   <ns1:parameter qname="ns5:address" type="xsd:string"/>
+   <ns1:parameter qname="ns5:email" type="xsd:string"/>
+  </ns1:operation>
+  <ns1:operation name="getBiddingProduct" qname="ns6:getBiddingProduct" returnQName="ns6:getBiddingProductReturn" returnType="xsd:string" soapAction="" xmlns:ns6="http://BS.ebay.aniruddha.com" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+   <ns1:parameter qname="ns6:email" type="xsd:string"/>
+  </ns1:operation>
+  <ns1:operation name="addToCart" qname="ns7:addToCart" returnQName="ns7:addToCartReturn" returnType="xsd:boolean" soapAction="" xmlns:ns7="http://BS.ebay.aniruddha.com" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+   <ns1:parameter qname="ns7:productId" type="xsd:string"/>
+   <ns1:parameter qname="ns7:email" type="xsd:string"/>
+  </ns1:operation>
+  <ns1:operation name="getUserPosted" qname="ns8:getUserPosted" returnQName="ns8:getUserPostedReturn" returnType="xsd:string" soapAction="" xmlns:ns8="http://BS.ebay.aniruddha.com" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+   <ns1:parameter qname="ns8:email" type="xsd:string"/>
+  </ns1:operation>
+  <ns1:operation name="getUserOrders" qname="ns9:getUserOrders" returnQName="ns9:getUserOrdersReturn" returnType="xsd:string" soapAction="" xmlns:ns9="http://BS.ebay.aniruddha.com" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+   <ns1:parameter qname="ns9:email" type="xsd:string"/>
+  </ns1:operation>
+  <ns1:operation name="removeFromCart" qname="ns10:removeFromCart" returnQName="ns10:removeFromCartReturn" returnType="xsd:boolean" soapAction="" xmlns:ns10="http://BS.ebay.aniruddha.com" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+   <ns1:parameter qname="ns10:productId" type="xsd:string"/>
+   <ns1:parameter qname="ns10:email" type="xsd:string"/>
+  </ns1:operation>
+  <ns1:operation name="insertUser" qname="ns11:insertUser" returnQName="ns11:insertUserReturn" returnType="xsd:boolean" soapAction="" xmlns:ns11="http://BS.ebay.aniruddha.com" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+   <ns1:parameter qname="ns11:email" type="xsd:string"/>
+   <ns1:parameter qname="ns11:password" type="xsd:string"/>
+   <ns1:parameter qname="ns11:firstName" type="xsd:string"/>
+   <ns1:parameter qname="ns11:lastName" type="xsd:string"/>
+  </ns1:operation>
+  <ns1:operation name="bidding" qname="ns12:bidding" returnQName="ns12:biddingReturn" returnType="xsd:boolean" soapAction="" xmlns:ns12="http://BS.ebay.aniruddha.com" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+   <ns1:parameter qname="ns12:productId" type="xsd:string"/>
+   <ns1:parameter qname="ns12:email" type="xsd:string"/>
+   <ns1:parameter qname="ns12:bidAmount" type="xsd:string"/>
+  </ns1:operation>
+  <ns1:operation name="getUserBids" qname="ns13:getUserBids" returnQName="ns13:getUserBidsReturn" returnType="xsd:string" soapAction="" xmlns:ns13="http://BS.ebay.aniruddha.com" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+   <ns1:parameter qname="ns13:email" type="xsd:string"/>
+  </ns1:operation>
+  <ns1:operation name="getCart" qname="ns14:getCart" returnQName="ns14:getCartReturn" returnType="xsd:string" soapAction="" xmlns:ns14="http://BS.ebay.aniruddha.com" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+   <ns1:parameter qname="ns14:email" type="xsd:string"/>
+  </ns1:operation>
+  <ns1:operation name="postProduct" qname="ns15:postProduct" returnQName="ns15:postProductReturn" returnType="xsd:boolean" soapAction="" xmlns:ns15="http://BS.ebay.aniruddha.com" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+   <ns1:parameter qname="ns15:name" type="xsd:string"/>
+   <ns1:parameter qname="ns15:description" type="xsd:string"/>
+   <ns1:parameter qname="ns15:price" type="xsd:string"/>
+   <ns1:parameter qname="ns15:quantity" type="xsd:string"/>
+   <ns1:parameter qname="ns15:sellerInfo" type="xsd:string"/>
+   <ns1:parameter qname="ns15:type" type="xsd:string"/>
+  </ns1:operation>
+  <ns1:parameter name="allowedMethods" value="getProduct getUserPosted bidding getUser getCart removeFromCart getLandingProduct insertUser updateUserProfile getUserOrders getBiddingProduct getUserBids addToCart checkout postProduct"/>
+  <ns1:parameter name="typeMappingVersion" value="1.2"/>
+  <ns1:parameter name="wsdlPortType" value="ebayImplementation"/>
+  <ns1:parameter name="className" value="com.aniruddha.ebay.BS.ebayImplementation"/>
+  <ns1:parameter name="wsdlServicePort" value="ebayImplementation"/>
+  <ns1:parameter name="schemaQualified" value="http://BS.ebay.aniruddha.com"/>
+  <ns1:parameter name="wsdlTargetNamespace" value="http://BS.ebay.aniruddha.com"/>
+  <ns1:parameter name="wsdlServiceElement" value="ebayImplementationService"/>
+ </ns1:service>
+ <ns1:transport name="http">
+  <ns1:requestFlow>
+   <ns1:handler type="URLMapper"/>
+   <ns1:handler type="java:org.apache.axis.handlers.http.HTTPAuthHandler"/>
+  </ns1:requestFlow>
+  <ns1:parameter name="qs:list" value="org.apache.axis.transport.http.QSListHandler"/>
+  <ns1:parameter name="qs:wsdl" value="org.apache.axis.transport.http.QSWSDLHandler"/>
+  <ns1:parameter name="qs.list" value="org.apache.axis.transport.http.QSListHandler"/>
+  <ns1:parameter name="qs.method" value="org.apache.axis.transport.http.QSMethodHandler"/>
+  <ns1:parameter name="qs:method" value="org.apache.axis.transport.http.QSMethodHandler"/>
+  <ns1:parameter name="qs.wsdl" value="org.apache.axis.transport.http.QSWSDLHandler"/>
+ </ns1:transport>
+ <ns1:transport name="local">
+  <ns1:responseFlow>
+   <ns1:handler type="LocalResponder"/>
+  </ns1:responseFlow>
+ </ns1:transport>
+</ns1:deployment>
